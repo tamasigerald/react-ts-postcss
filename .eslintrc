@@ -1,0 +1,30 @@
+{
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:prettier/recommended"],
+    "plugins": ["react", "prettier"],
+    "env": {
+        "es2021": true,
+        "node": true,
+        "jest": true,
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "ignorePatterns": ["/node:modules/**", "/build/**"],
+    "rules": {
+        "react/react-in-jsx-scope": 0,
+        "react/display-name": 0,
+        "react/prop-types": 0,
+        "no-unused-vars": ["warn", { "args": "none", "argsIgnorePattern": "req|res|next|val" }],
+        "prettier/prettier": ["warn"]
+    },
+    "settings": {
+        "react": {
+            "verson": "detect"
+        }
+    }
+}
