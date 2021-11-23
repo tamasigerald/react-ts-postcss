@@ -1,6 +1,10 @@
 import { createContext, FC, useEffect, useReducer, useRef } from 'react';
+import { Outlet } from 'react-router';
+
 import Reducer from './reducer';
 import { GlobalContextType, GlobalStateType } from './types';
+
+import Layout from '@/components/Layout';
 
 const initialState: GlobalStateType = {
     theme: 'light',
@@ -19,7 +23,7 @@ const initializeState = (): GlobalStateType => {
 
 export const GlobalContext = createContext({} as GlobalContextType);
 
-const GlobalProvider: FC = ({ children }) => {
+const GlobalProvider: FC = () => {
     const [globalState, dispatch] = useReducer(Reducer, initializeState());
     const initialRenderGlobalState = useRef(true);
     const initialRenderPersistenceMode = useRef(true);
@@ -50,7 +54,13 @@ const GlobalProvider: FC = ({ children }) => {
         }
     }, [globalState.persistanceMode]);
 
-    return <GlobalContext.Provider value={{ globalState, dispatch }}>{children}</GlobalContext.Provider>;
+    return (
+        <GlobalContext.Provider value={{ globalState, dispatch }}>
+            <Layout>
+                <Outlet />
+            </Layout>
+        </GlobalContext.Provider>
+    );
 };
 
 export default GlobalProvider;

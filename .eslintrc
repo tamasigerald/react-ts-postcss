@@ -13,17 +13,21 @@
         "es2021": true,
         "node": true
     },
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:prettier/recommended"],
     "plugins": ["react", "prettier"],
     "rules": {
         "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
         "no-unused-vars": "warn",
         "react/react-in-jsx-scope": "off",
-        "no-empty": "warn"
+        "no-empty": "warn",
+        "react/display-name": "off",
+        "react/prop-types": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
     },
     "settings": {
         "react": {
             "version": "detect"
         }
-    }
+    },
+    "ignorePatterns": ["/node_modules/**", "/build/**", ".next/**"]
 }
