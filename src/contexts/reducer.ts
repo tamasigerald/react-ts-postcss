@@ -1,15 +1,17 @@
-import { ActionType, GlobalStateType } from './types';
+import { Actions, ActionType, GlobalStateType } from './types';
 
-const Reducer = (state: GlobalStateType, action: ActionType) => {
-    const { type, payload } = action;
-    switch (type) {
-        case 'SET_THEME':
+const Reducer = (state: GlobalStateType, action: ActionType): GlobalStateType => {
+    switch (action.type) {
+        case Actions.SET_THEME:
             return {
                 ...state,
-                theme: payload,
+                theme: action.payload,
             };
-        case 'GET_THEME':
-            return state.theme;
+        case Actions.SET_PERSISTANCE:
+            return {
+                ...state,
+                persistanceMode: action.payload,
+            };
         default:
             return state;
     }

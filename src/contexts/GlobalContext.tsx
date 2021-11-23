@@ -1,15 +1,14 @@
-import { createContext, FC, useEffect, useReducer, useRef, useState } from 'react';
+import { createContext, FC, useEffect, useReducer, useRef } from 'react';
 import Reducer from './reducer';
-import { ActionType, GlobalContextType, GlobalStateType } from './types';
+import { GlobalContextType, GlobalStateType } from './types';
 
 const initialState: GlobalStateType = {
     theme: 'light',
-    persistanceType: 'session',
+    persistanceMode: 'session',
 };
 
-const initializeState = () => {
-    if (typeof Storage !== 'undefined') {
-    } else {
+const initializeState = (): GlobalStateType => {
+    if (typeof Storage === 'undefined') {
         throw new Error('You need to enable Storage to run this app.');
     }
 
@@ -21,35 +20,35 @@ const initializeState = () => {
 export const GlobalContext = createContext({} as GlobalContextType);
 
 const GlobalProvider: FC = ({ children }) => {
-    const [globalState, dispatch] = useReducer<(state: GlobalStateType, action: ActionType) => any>(Reducer, initializeState());
+    const [globalState, dispatch] = useReducer(Reducer, initializeState());
     const initialRenderGlobalState = useRef(true);
-    const initialRenderPersistenceType = useRef(true);
+    const initialRenderPersistenceMode = useRef(true);
 
     useEffect(() => {
         if (initialRenderGlobalState.current) {
             initialRenderGlobalState.current = false;
             return;
         }
-        const getPersistenceType = globalState.persistenceType;
-        if (getPersistenceType === 'sessionStorage') {
+        const getPersistenceMode = globalState.persistanceMode;
+        if (getPersistenceMode === 'session') {
             sessionStorage.setItem('globalState', JSON.stringify(globalState));
-        } else if (getPersistenceType === 'localStorage') {
+        } else if (getPersistenceMode === 'local') {
             localStorage.setItem('globalState', JSON.stringify(globalState));
         }
     }, [globalState]);
 
     useEffect(() => {
-        if (initialRenderPersistenceType.current) {
-            initialRenderPersistenceType.current = false;
+        if (initialRenderPersistenceMode.current) {
+            initialRenderPersistenceMode.current = false;
             return;
         }
-        const getPersistenceType = globalState.persistenceType;
-        if (getPersistenceType === 'sessionStorage') {
+        const getPersistenceMode = globalState.persistanceMode;
+        if (getPersistenceMode === 'session') {
             localStorage.removeItem('globalState');
-        } else if (getPersistenceType === 'localStorage') {
+        } else if (getPersistenceMode === 'local') {
             sessionStorage.removeItem('globalState');
         }
-    }, [globalState.persistenceType]);
+    }, [globalState.persistanceMode]);
 
     return <GlobalContext.Provider value={{ globalState, dispatch }}>{children}</GlobalContext.Provider>;
 };
