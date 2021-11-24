@@ -1,0 +1,13 @@
+:root {
+    --text-base-size: 2rem;
+    --text-xs: calc(0.667 * var(--text-base-size));
+    --text-sm: calc(0.8 * var(--text-base-size));
+    --text-base: var(--text-base-size);
+    --text-md: calc(1.333 * var(--text-base-size));
+    --text-lg: calc(1.778 * var(--text-base-size));
+    --text-xl: calc(2.361 * var(--text-base-size));
+    --text-xxl: calc(2.667 * var(--text-base-size));
+    --text-xxxl: calc(3.5 * var(--text-base-size));
+    --text-huge: calc(4.167 * var(--text-base-size));
+    --text-xhuge: calc(5.3 * var(--text-base-size));
+}
