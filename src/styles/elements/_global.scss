@@ -1,0 +1,21 @@
+html {
+    @include colors();
+    font-size: 8px;
+}
+
+body {
+    font-size: var(--text-base-size);
+    color: $-c-text;
+    background-color: $-c-body;
+}
+
+a {
+    color: $-c-text;
+    padding: var(--space-md);
+}
+
+button {
+    color: $-c-body;
+    background-color: $-c-blue;
+    padding: var(--space-md);
+}

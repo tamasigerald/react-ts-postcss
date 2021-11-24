@@ -1,7 +1,7 @@
 import { Dispatch, Reducer as ReducerFromReactTypem, ReducerState, ReducerAction } from 'react';
 import Reducer from './reducer';
 
-export type ThemeType = 'light' | 'dark';
+export type ThemeType = 'light' | 'dark' | 'goaigua';
 export type PersistanceType = 'session' | 'local';
 
 export type GlobalStateType = {

@@ -1,0 +1,49 @@
+@mixin colors {
+    &[data-theme="light"] {
+        --c-body: var(--c-white);
+        --c-text: #101010;
+        --c-green: #4c9596;
+        --c-red: #b63e35;
+        --c-red-20: #f7918a;
+        --c-gray: #555a74;
+        --c-gray-10: #ddd;
+        --c-gray-20: #ccc;
+        --c-gray-40: #999;
+        --c-yellow: #fdd261;
+        --c-blue: #1d89d1;
+        --c-white: #ffffff;
+        --c-black: #000;
+    }
+
+    &[data-theme="dark"] {
+        --c-body: #202630;
+        --c-text: #e9e9e9;
+        --c-green: #30947b;
+        --c-red: #a03028;
+        --c-yellow: #e2b74a;
+        --c-blue: #1160f3;
+    }
+
+    &[data-theme="goaigua"] {
+        --c-body: #3d3d3d;
+        --c-text: #e9e9e9;
+        --c-green: #30947b;
+        --c-red: #a03028;
+        --c-yellow: #e2b74a;
+        --c-blue: #1160f3;
+    }
+}
+
+$-c-body: var(--c-body);
+$-c-text: var(--c-text);
+$-c-green: var(--c-green);
+$-c-red: var(--c-red);
+$-c-red-20: var(--c-red-20);
+$-c-gray: var(--c-gray);
+$-c-gray-10: var(--c-gray-10);
+$-c-gray-20: var(--c-gray-20);
+$-c-gray-40: var(--c-gray-40);
+$-c-white: var(--c-white);
+$-c-black: var(--c-black);
+$-c-yellow: var(--c-yellow);
+$-c-blue: var(--c-blue);

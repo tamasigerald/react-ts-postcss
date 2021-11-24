@@ -5,6 +5,7 @@ import Reducer from './reducer';
 import { GlobalContextType, GlobalStateType } from './types';
 
 import Layout from '@/components/Layout';
+import Header from '@/components/Header';
 
 const initialState: GlobalStateType = {
     theme: 'light',
@@ -54,8 +55,14 @@ const GlobalProvider: FC = () => {
         }
     }, [globalState.persistanceMode]);
 
+    useEffect(() => {
+        // console.log(document)
+        document.querySelector('html')?.setAttribute('data-theme', globalState.theme);
+    }, [globalState.theme]);
+
     return (
         <GlobalContext.Provider value={{ globalState, dispatch }}>
+            <Header />
             <Layout>
                 <Outlet />
             </Layout>
